@@ -1,0 +1,29 @@
+body{
+    background-color: burlywood;
+}
+#container{
+    background-color: beige;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+#calcContainer{
+    border: 3px solid black;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+#operators{
+    width: 70px;
+    height: 300px;
+    flex-direction: row;
+    
+}
+.btn{
+    font-size: large;
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+}
