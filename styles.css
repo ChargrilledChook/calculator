@@ -2,7 +2,7 @@ body{
     background-color: burlywood;
 }
 #container{
-    background-color: beige;
+    background-color: darkslategray;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,4 +35,9 @@ body{
     border: 3px solid black;
     width: 292px;
     height: 72px;
+    background: dimgray;
+}
+#clear{
+    width: 134px;
+    float: right;
 }
