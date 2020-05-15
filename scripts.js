@@ -1,4 +1,13 @@
-// Basic arithmetic functions
+// TODO stop user from inputting an operator in the wrong order ie first or consecutively
+
+// #region variable declarations
+let displayString = '';
+let operationString = '';
+let result = 0;
+
+//#endregion
+
+// #region Basic arithmetic functions + operate
 function add(num1, num2) {
     return num1 + num2;
 }
@@ -29,19 +38,9 @@ function operate(input1, operator, input2) {
             return 'Error';        
     }
 }
+//#endregion
 
-let displayString = '';
-let operationString = '';
-
-// Event listeners for buttons
-const clear = document.querySelector('#clear');
-clear.addEventListener('click', function() {
-
-    displayString = '';
-    display.innerHTML = '0';
-    operationString = '' ;
-});
-
+// #region Event listeners for digit buttons
 
 const bZero = document.querySelector('#bZero'); 
 bZero.addEventListener('click', function() {
@@ -116,6 +115,17 @@ bNine.addEventListener('click', function() {
 
 });
 
+//#endregion
+
+//#region event listeners for operators and special buttons
+const clear = document.querySelector('#clear');
+clear.addEventListener('click', function() {
+
+    displayString = '';
+    display.innerHTML = '0';
+    operationString = '' ;
+});
+
 const bPlus = document.querySelector('#bPlus');
 bPlus.addEventListener('click', () => {
     operationString += displayString;
@@ -144,26 +154,31 @@ bMultiply.addEventListener('click', () => {
     displayString = '';
 });
 
+//#endregion
+
+// #region equals function - main logic of program is here
 const bEquals = document.querySelector('#bEquals');
 bEquals.addEventListener('click', () => {
     operationString += displayString;
     operationString = operationString.split(' ');
-    let result = operate(parseInt(operationString[0]), operationString[1], parseInt(operationString[2]));
+    for (let i = 1; i <= operationString.length - 1; i += 2) {
+        if (operationString[i] === '*' || operationString[i] === '/') {
+            result = operate(parseInt(operationString[i - 1]), operationString[i], parseInt(operationString[i + 1]));
+            console.log(operationString)
+            operationString.splice(i - 1, 3, result)
+            console.log(operationString)
+            i = 1;
+        }
+       
+    } 
+    while (operationString.length >= 3) {
+        result = operate(parseInt(operationString[0]), operationString[1], parseInt(operationString[2]));
+        operationString.splice(0, 3, result)
+    }
     displayString = result
     display.innerHTML = displayString;
     operationString = '';
     displayString = '';
-    
-}); 
-
-
-/*
-const example = document.querySelector("#example")
-example.addEventListener('click', () => {
-    //some code
 });
 
-example.addEventListener('click', () => {
-    // exact same code
-});
-*/
+//#endregion

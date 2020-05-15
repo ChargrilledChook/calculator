@@ -1,8 +1,7 @@
 body{
-    background-color: burlywood;
+    background-color: #306230;
 }
 #container{
-    background-color: darkslategray;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14,6 +13,7 @@ body{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    background-color: lightgrey;
 }
 #operators{
     width: 70px;
@@ -22,10 +22,14 @@ body{
     
 }
 .btn{
-    font-size: large;
+    font-size: x-large;
     width: 60px;
     height: 60px;
     margin: 5px;
+    font-family: 'Press Start 2P', cursive;
+    background-color: red;
+    border-radius: 50%;
+    
 }
 #display{
     display: flex;
@@ -35,9 +39,15 @@ body{
     border: 3px solid black;
     width: 292px;
     height: 72px;
-    background: dimgray;
+    background: #9bbc0f;
+    font-family: 'Press Start 2P', cursive;
 }
-#clear{
+.bigBtn{
+    font-size: x-large;
     width: 134px;
-    float: right;
+    height: 60px;
+    margin: 5px;
+    font-family: 'Press Start 2P', cursive;
+    background-color: red;
 }
+
