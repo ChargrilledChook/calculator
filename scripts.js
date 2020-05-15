@@ -1,6 +1,6 @@
 // TODO stop user from inputting an operator in the wrong order ie first or consecutively
 
-// #region variable declarations
+// #region Variable declarations
 let displayString = '';
 let operationString = '';
 let result = 0;
@@ -117,7 +117,7 @@ bNine.addEventListener('click', function() {
 
 //#endregion
 
-//#region event listeners for operators and special buttons
+// #region Event listeners for operators and special buttons
 const clear = document.querySelector('#clear');
 clear.addEventListener('click', function() {
 
@@ -156,7 +156,7 @@ bMultiply.addEventListener('click', () => {
 
 //#endregion
 
-// #region equals function - main logic of program is here
+// #region Equals function - main logic of program is here
 const bEquals = document.querySelector('#bEquals');
 bEquals.addEventListener('click', () => {
     operationString += displayString;
