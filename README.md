@@ -13,11 +13,11 @@ A javascript based calculator.
 
 ### Potential bugs checklist:
 
-* Long string of operations works (TEST)
-* Round answers with long decimals / fix display overflow
-* Make sure pressing = or other operators in wrong order doesn't throw an error
-* Clear should be a hard reset (TEST)
-* Cute error message if dividing by zero (NaN?)
+* Long string of operations works **TEST**
+* Round answers with long decimals / fix display overflow **TODO**
+* Make sure pressing = or other operators in wrong order doesn't throw an error **TODO**
+* Clear should be a hard reset **TEST**
+* Cute error message if dividing by zero (NaN?) **DONE** do polish pass at end
 
 ### Bonus / Extra features:
 

@@ -164,18 +164,21 @@ bEquals.addEventListener('click', () => {
     for (let i = 1; i <= operationString.length - 1; i += 2) {
         if (operationString[i] === '*' || operationString[i] === '/') {
             result = operate(parseInt(operationString[i - 1]), operationString[i], parseInt(operationString[i + 1]));
-            console.log(operationString)
-            operationString.splice(i - 1, 3, result)
-            console.log(operationString)
+            console.log(operationString);
+            operationString.splice(i - 1, 3, result);
+            console.log(operationString);
             i = 1;
         }
-       
     } 
     while (operationString.length >= 3) {
         result = operate(parseInt(operationString[0]), operationString[1], parseInt(operationString[2]));
-        operationString.splice(0, 3, result)
+        operationString.splice(0, 3, result);
     }
-    displayString = result
+    console.log(result);
+    if (isNaN(result)) {
+        result = 'You broke it ¯\_(ツ)_/¯';
+    }
+    displayString = result;
     display.innerHTML = displayString;
     operationString = '';
     displayString = '';
