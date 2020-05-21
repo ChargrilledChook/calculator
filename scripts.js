@@ -4,6 +4,8 @@
 let displayString = '';
 let operationString = '';
 let result = 0;
+let buttonOn = false;
+
 
 //#endregion
 
@@ -46,7 +48,7 @@ const bZero = document.querySelector('#bZero');
 bZero.addEventListener('click', function() {
     
     // Address case of zero being pressed first
-    if (displayString !== '') {
+    if ( displayString !== '0') {
         displayString += '0';
         display.innerHTML = displayString;
     }
@@ -120,14 +122,16 @@ bNine.addEventListener('click', function() {
 // #region Event listeners for operators and special buttons
 const clear = document.querySelector('#clear');
 clear.addEventListener('click', function() {
-
+    operatorToggle(true);
     displayString = '';
     display.innerHTML = '0';
-    operationString = '' ;
+    operationString = '';
+    result = 0;
 });
 
 const bPlus = document.querySelector('#bPlus');
 bPlus.addEventListener('click', () => {
+    operatorToggle(true);
     operationString += displayString;
     operationString += ' + '
     displayString = '';
@@ -135,6 +139,7 @@ bPlus.addEventListener('click', () => {
 
 const bMinus = document.querySelector('#bMinus');
 bMinus.addEventListener('click', () => {
+    operatorToggle(true);
     operationString += displayString;
     operationString += ' - '
     displayString = '';
@@ -142,6 +147,7 @@ bMinus.addEventListener('click', () => {
 
 const bDivide = document.querySelector('#bDivide');
 bDivide.addEventListener('click', () => {
+    operatorToggle(true);
     operationString += displayString;
     operationString += ' / '
     displayString = '';
@@ -149,6 +155,7 @@ bDivide.addEventListener('click', () => {
 
 const bMultiply = document.querySelector('#bMultiply');
 bMultiply.addEventListener('click', () => {
+    operatorToggle(true);
     operationString += displayString;
     operationString += ' * '
     displayString = '';
@@ -156,14 +163,36 @@ bMultiply.addEventListener('click', () => {
 
 //#endregion
 
+// Loop to enable / disable operators
+function operatorToggle(bool) {
+    const buttons = document.getElementsByClassName('operator');
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].disabled = bool; 
+    }
+    buttonOn = false;
+}
+
+const digits = document.getElementsByClassName('dig');
+
+for (i = 0; i < digits.length; i++) {
+    digits[i].addEventListener('click', () => {
+        if (buttonOn == false) {
+            operatorToggle(false);
+        }
+    });
+    buttonOn = true;
+}
+
 // #region Equals function - main logic of program is here
 const bEquals = document.querySelector('#bEquals');
 bEquals.addEventListener('click', () => {
+    console.log(`opstring is ${operationString}`);
+    operatorToggle(true);
     operationString += displayString;
     operationString = operationString.split(' ');
     for (let i = 1; i <= operationString.length - 1; i += 2) {
         if (operationString[i] === '*' || operationString[i] === '/') {
-            result = operate(parseInt(operationString[i - 1]), operationString[i], parseInt(operationString[i + 1]));
+            result = operate(parseFloat(operationString[i - 1]), operationString[i], parseFloat(operationString[i + 1]));
             console.log(operationString);
             operationString.splice(i - 1, 3, result);
             console.log(operationString);
@@ -171,17 +200,25 @@ bEquals.addEventListener('click', () => {
         }
     } 
     while (operationString.length >= 3) {
-        result = operate(parseInt(operationString[0]), operationString[1], parseInt(operationString[2]));
+        result = operate(parseFloat(operationString[0]), operationString[1], parseFloat(operationString[2]));
+        console.log(`result is ${result}`)
         operationString.splice(0, 3, result);
     }
-    console.log(result);
-    if (isNaN(result)) {
-        result = 'You broke it ¯\_(ツ)_/¯';
+   
+    if (isNaN(result) || result == 'Infinity') {
+        result = 'You broke it ¯\\_(ツ)_/¯';
     }
-    displayString = result;
+    if (result % 1 === 0) {
+        displayString = result;
+    } else {
+        displayString = result.toFixed(2);
+    }
+        
     display.innerHTML = displayString;
     operationString = '';
     displayString = '';
+    result = 0;
 });
 
+operatorToggle(true);
 //#endregion
