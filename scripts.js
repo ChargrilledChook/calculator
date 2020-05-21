@@ -1,5 +1,3 @@
-// TODO stop user from inputting an operator in the wrong order ie first or consecutively
-
 // #region Variable declarations
 let displayString = '';
 let operationString = '';
@@ -120,6 +118,12 @@ bNine.addEventListener('click', function() {
 //#endregion
 
 // #region Event listeners for operators and special buttons
+
+const backspace = document.querySelector('#del'); // TODO
+backspace.addEventListener('click', () => {
+   
+});
+
 const clear = document.querySelector('#clear');
 clear.addEventListener('click', function() {
     operatorToggle(true);
@@ -163,7 +167,7 @@ bMultiply.addEventListener('click', () => {
 
 //#endregion
 
-// Loop to enable / disable operators
+// #region Loops to enable / disable operators
 function operatorToggle(bool) {
     const buttons = document.getElementsByClassName('operator');
     for (let i = 0; i < buttons.length; i++) {
@@ -182,6 +186,7 @@ for (i = 0; i < digits.length; i++) {
     });
     buttonOn = true;
 }
+// #endregion
 
 // #region Equals function - main logic of program is here
 const bEquals = document.querySelector('#bEquals');
